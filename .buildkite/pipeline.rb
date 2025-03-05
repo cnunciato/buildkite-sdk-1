@@ -14,7 +14,7 @@ commands = [
 ]
 
 plugins = [
-  { "docker#v5.11.0": { image: "buildkite-sdk-tools:latest" } }
+  { "docker#v5.11.0": { image: "buildkite-sdk-tools:latest", "propagate-environment": true } }
 ]
 
 # If the job has an associated tag that looks like a new version, add a publish step.
@@ -40,9 +40,9 @@ plugins.push({ "aws-assume-role-with-web-identity#v1.0.0": {
 }})
 plugins.push({ "aws-ssm#v1.0.0": {
   parameters: {
-    NPM_TOKEN: "prod/buildkite-sdk/npm-token",
-    PYPI_TOKEN: "prod/buildkite-sdk/pypi-token",
-    GITHUB_TOKEN: "prod/buildkite-sdk/github-token"
+    NPM_TOKEN: "/prod/buildkite-sdk/npm-token",
+    PYPI_TOKEN: "/prod/buildkite-sdk/pypi-token",
+    GITHUB_TOKEN: "/prod/buildkite-sdk/github-token"
   }
 }})
 
