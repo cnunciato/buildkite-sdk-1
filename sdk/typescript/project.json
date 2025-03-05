@@ -59,7 +59,7 @@
             "options": {
                 "commands": [
                     "npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN",
-                    "npm publish"
+                    "npm publish --access public"
                 ],
                 "cwd": "dist/sdks/typescript"
             }
