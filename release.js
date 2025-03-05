@@ -31,6 +31,14 @@ if (!from || !to) {
 
     // Commit and tag.
     const git = simpleGit();
+
+    // Add the tags
+    //await git.checkoutLocalBranch(`release/v${to}`)
+    //await git.addTag(`v${to}`);
+    //await git.addTag(`sdk/go/v${to}`);
+
+    // Push to a release branch (this kicks off publishing in BK)
+    //await git.checkoutLocalBranch(`release/v${to}`)
     await git.add("sdk"); // Include everything here, as lockfiles will also have changed.
     await git.add("project.json"); // As this contains the new version.
     await git.commit(`Release v${to}`);
@@ -38,7 +46,7 @@ if (!from || !to) {
     await git.addTag(`sdk/go/v${to}`);
 
     // Push the commit and tags. This is what triggers publishing.
-    await git.push("origin", "main", { "--tags": true });
+    await git.push("origin", `release/v${to}`, { "--tags": true });
 
     // Auth with GitHub.
     const octokit = new Octokit({

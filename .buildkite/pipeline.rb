@@ -14,7 +14,16 @@ commands = [
 ]
 
 plugins = [
-  { "docker#v5.11.0": { image: "buildkite-sdk-tools:latest", "propagate-environment": true } }
+  { "docker#v5.11.0": {
+    image: "buildkite-sdk-tools:latest",
+    "propagate-environment": true,
+    environment: [
+      "GITHUB_TOKEN",
+      "NPM_TOKEN",
+      "PYPI_TOKEN",
+      "GEM_HOST_API_KEY"
+    ]
+  }}
 ]
 
 # If the job has an associated tag that looks like a new version, add a publish step.
